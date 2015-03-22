@@ -1,4 +1,4 @@
-package suhail.downloader.suhail.downloader.model;
+package suhail.downloader.model;
 
 import java.util.HashMap;
 
@@ -12,6 +12,24 @@ public class MakeRequestModel {
     private HashMap<String,String> mHeader ;
     private String mEncoding ;
     private String mMethod ;
+    private String mFilePath ;
+    private boolean isDownloaded ;
+
+    public boolean isDownloaded() {
+        return isDownloaded;
+    }
+
+    public void setDownloaded(boolean isDownloaded) {
+        this.isDownloaded = isDownloaded;
+    }
+
+    public String getmFilePath() {
+        return mFilePath;
+    }
+
+    public void setmFilePath(String mFilePath) {
+        this.mFilePath = mFilePath;
+    }
 
     public String getmUrl() {
         return mUrl;
@@ -51,5 +69,12 @@ public class MakeRequestModel {
 
     public void setmMethod(String mMethod) {
         this.mMethod = mMethod;
+    }
+
+    public String stingfyBody(){
+        if(mBody != null){
+            // TODO : make body in post form
+        }
+        return null ;
     }
 }

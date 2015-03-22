@@ -1,4 +1,4 @@
-package suhail.downloader.suhail.downloader.constant;
+package suhail.downloader.constant;
 
 /**
  * Created by suhailmehta on 19/03/15.
