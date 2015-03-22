@@ -1,4 +1,4 @@
-package suhail.downloader.model;
+package suhailmehta.main.downloadinglibrary.model;
 
 import java.util.HashMap;
 

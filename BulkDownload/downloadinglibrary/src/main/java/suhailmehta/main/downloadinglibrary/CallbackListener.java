@@ -1,4 +1,4 @@
-package suhail.downloader;
+package suhailmehta.main.downloadinglibrary;
 
 /**
  * Created by suhailmehta on 22/03/15.

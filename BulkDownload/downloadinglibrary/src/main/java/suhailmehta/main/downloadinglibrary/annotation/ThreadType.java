@@ -1,4 +1,4 @@
-package suhail.downloader.annotation;
+package suhailmehta.main.downloadinglibrary.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ThreadType {
 
-    String mode() default "[background]" ;
+    String mode() default "[Ui]" ;
 
 }

@@ -1,4 +1,4 @@
-package suhail.downloader;
+package suhailmehta.main.downloadinglibrary;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -14,8 +14,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import suhail.downloader.constant.Encoding;
-import suhail.downloader.model.MakeRequestModel;
+import suhailmehta.main.downloadinglibrary.constant.Encoding;
+import suhailmehta.main.downloadinglibrary.model.MakeRequestModel;
 
 /**
  * Created by suhailmehta on 22/03/15.

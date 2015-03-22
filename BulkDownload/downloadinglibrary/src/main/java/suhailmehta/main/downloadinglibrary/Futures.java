@@ -1,7 +1,14 @@
-package suhail.downloader;
+package suhailmehta.main.downloadinglibrary;
+
+import android.os.Handler;
+import android.os.Looper;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+
+import suhailmehta.main.downloadinglibrary.annotation.ReadThreadTypeAnnotation;
+import suhailmehta.main.downloadinglibrary.annotation.ThreadType;
+import suhailmehta.main.downloadinglibrary.constant.ThreadConstant;
 
 /**
  * Created by suhailmehta on 22/03/15.
@@ -27,7 +34,7 @@ public class Futures {
     }
 
     public static <V> void addCallbackListener(final Future<V> future,
-                                       final CallbackListener<? super V> callback) {
+                                               final CallbackListener<? super V> callback) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -44,7 +51,24 @@ public class Futures {
                     callback.onFailure(e);
                     return;
                 }
-                callback.onSuccess(value);
+
+                String mode =  ReadThreadTypeAnnotation.readAnnotationOn(ThreadType.class);
+
+                if(mode != null){
+                    if(mode.equals(ThreadConstant.UI)){
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onSuccess(value);
+                            }
+                        });
+
+                    }else{
+                        callback.onSuccess(value);
+                    }
+                }
+
             }
         }).start();
 
