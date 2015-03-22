@@ -13,7 +13,7 @@ public class ReadThreadTypeAnnotation {
     {
         String mode = null;
         try {
-            Method method = clazz.getMethod("getString", new Class[]{}); //TODO : change method name at later stages
+            Method method = clazz.getMethod("onSuccess", new Class[]{});
 
             Annotation[] annotations = method.getAnnotations();
             for (Annotation annotation : annotations) {

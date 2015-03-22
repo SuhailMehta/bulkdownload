@@ -7,7 +7,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import suhailmehta.main.downloadinglibrary.annotation.ReadThreadTypeAnnotation;
-import suhailmehta.main.downloadinglibrary.annotation.ThreadType;
 import suhailmehta.main.downloadinglibrary.constant.ThreadConstant;
 
 /**
@@ -52,7 +51,7 @@ public class Futures {
                     return;
                 }
 
-                String mode =  ReadThreadTypeAnnotation.readAnnotationOn(ThreadType.class);
+                String mode =  ReadThreadTypeAnnotation.readAnnotationOn(callback.getClass());
 
                 if(mode != null){
                     if(mode.equals(ThreadConstant.UI)){
@@ -67,6 +66,8 @@ public class Futures {
                     }else{
                         callback.onSuccess(value);
                     }
+                }else{
+                    callback.onSuccess(value);
                 }
 
             }

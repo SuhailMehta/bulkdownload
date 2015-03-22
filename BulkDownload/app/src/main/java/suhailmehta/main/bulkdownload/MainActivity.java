@@ -1,18 +1,17 @@
 package suhailmehta.main.bulkdownload;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import suhail.downloader.CallbackListener;
-import suhail.downloader.DownloaderCallable;
-import suhail.downloader.Futures;
+import suhailmehta.main.downloadinglibrary.CallbackListener;
+import suhailmehta.main.downloadinglibrary.DownloaderCallable;
+import suhailmehta.main.downloadinglibrary.Futures;
 import suhailmehta.main.downloadinglibrary.annotation.ThreadType;
+import suhailmehta.main.downloadinglibrary.constant.ThreadConstant;
 import suhailmehta.main.downloadinglibrary.model.MakeRequestModel;
 
 
@@ -36,53 +35,42 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void run() {
 
-                // Make Request Model (# MakeRequestModel.class) first
+                // Make Request Model { MakeRequestModel.java } first
                 MakeRequestModel model = new MakeRequestModel();
+
+                // TODO : Set request model properties and stringify the body part
+
+                // TODO : fetch storage location from {StorageUtils.java}
 
                 Future<MakeRequestModel> future = mService.submit(new DownloaderCallable(model));
 
                 Futures.addCallbackListener(future, new CallbackListener<MakeRequestModel>() {
 
-                    @ThreadType (mode = "Background")
+                    // mode = ThreadConstant.UI to get the callback on UI THREAD , DEFAULT IS UI
+                    @ThreadType(mode = ThreadConstant.BACKGROUND)
                     public void onSuccess(MakeRequestModel result) {
 
                         if (result.isDownloaded()) {
 
-                        } else{
+                            // Success
+                            // TODO : Use JsonReader to parse the json response here from file
 
+                        } else {
+                           // TODO : Handle error here
                         }
                     }
 
                     public void onFailure(Throwable throwable) {
 
+                        // TODO : shut down the executor service and how error log
 
                     }
+
+                    // TODO : In later stages add download progress callback here.
                 });
             }
         }).start();
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

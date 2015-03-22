@@ -1,1 +1,1 @@
-include ':app', ':downloader', ':downloadinglibrary'
+include ':app', ':downloadinglibrary'
