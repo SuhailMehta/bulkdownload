@@ -5,6 +5,6 @@ package suhailmehta.main.downloadinglibrary.constant;
  */
 public interface Method {
 
-    int GET = 1010 ;
-    int POST = 1011 ;
+    String GET = "GET" ;
+    String POST = "POST" ;
 }

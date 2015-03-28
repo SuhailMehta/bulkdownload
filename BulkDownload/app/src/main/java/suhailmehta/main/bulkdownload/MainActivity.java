@@ -1,16 +1,22 @@
 package suhailmehta.main.bulkdownload;
 
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBarActivity;
 
+import org.apache.http.protocol.HTTP;
+
+import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import suhailmehta.main.bulkdownload.utils.StorageUtils;
 import suhailmehta.main.downloadinglibrary.CallbackListener;
 import suhailmehta.main.downloadinglibrary.DownloaderCallable;
 import suhailmehta.main.downloadinglibrary.Futures;
 import suhailmehta.main.downloadinglibrary.annotation.ThreadType;
+import suhailmehta.main.downloadinglibrary.constant.Method;
 import suhailmehta.main.downloadinglibrary.constant.ThreadConstant;
 import suhailmehta.main.downloadinglibrary.model.MakeRequestModel;
 
@@ -38,6 +44,13 @@ public class MainActivity extends ActionBarActivity {
                 // Make Request Model { MakeRequestModel.java } first
                 MakeRequestModel model = new MakeRequestModel();
 
+                File cachedirectory = StorageUtils.getCacheDirectoryForDownload(MainActivity.this,true);
+                model.setmFilePath(cachedirectory.getPath()+"/name.json");
+
+                model.setmEncoding(HTTP.UTF_8);
+                model.setmMethod(Method.GET);
+                model.setmUrl("http://jsonplaceholder.typicode.com/posts");
+
                 // TODO : Set request model properties and stringify the body part
 
                 // TODO : fetch storage location from {StorageUtils.java}
@@ -56,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
                             // TODO : Use JsonReader to parse the json response here from file
 
                         } else {
-                           // TODO : Handle error here
+                            // TODO : Handle error here
                         }
                     }
 
